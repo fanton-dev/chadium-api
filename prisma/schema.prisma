@@ -12,3 +12,21 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  // Primary key
+  id String @id @default(uuid())
+
+  // Personal information
+  email String  @unique
+  name  String?
+
+  // External accounts
+  googleId String? @unique @map("google_id")
+
+  // Row timestamps
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("users")
+}
