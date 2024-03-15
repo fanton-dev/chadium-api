@@ -1,0 +1,77 @@
+{
+    "root": true,
+    "ignorePatterns": [
+        "**/*"
+    ],
+    "plugins": [
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx",
+                "*.js",
+                "*.jsx"
+            ],
+            "rules": {}
+        },
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "extends": [
+                "airbnb-base",
+                "airbnb-typescript/base",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+
+            }
+        },
+        {
+            "files": [
+                "*.js",
+                "*.jsx"
+            ],
+            "extends": [
+                "airbnb-base",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+
+            }
+        },
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "extends": [
+                "airbnb",
+                "airbnb-typescript",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+                "react/react-in-jsx-scope": "off",
+                "import/no-extraneous-dependencies": "off",
+                "class-methods-use-this": "off",
+                "import/prefer-default-export": "off",
+                "react/jsx-props-no-spreading": "off"
+            }
+        },
+        {
+            "files": [
+                "*.spec.ts",
+                "*.spec.tsx",
+                "*.spec.js",
+                "*.spec.jsx"
+            ],
+            "env": {
+                "jest": true
+            },
+            "rules": {
+            }
+        }
+    ]
+}
