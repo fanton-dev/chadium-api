@@ -1,26 +1,67 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiOperation,
+  ApiProperty,
+  ApiTags,
+} from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-interface AiRequestDto {
+export class AiRequestDto {
+  @ApiProperty({
+    description: 'The title of the task',
+    example: 'Apartment Building Residents',
+  })
   title: string;
+  @ApiProperty({
+    description: 'The model to use for the task',
+    example: 'gpt-4',
+  })
   model: string;
 }
 
 export class PostSummaryRequestDto {
+  @ApiProperty({
+    description: 'The model to use for the task',
+    example: 'gpt-4',
+  })
   model: string;
+  @ApiProperty({
+    description: 'The array of posts to summarize',
+    example: ['I am happy', 'I am sad', 'I am angry'],
+  })
   posts: string[];
 }
 export class PostDescriptionRequestDto {
+  @ApiProperty({
+    description: 'The model to use for the task',
+    example: 'gpt-4',
+  })
   model: string;
+  @ApiProperty({
+    description: 'The title of the post',
+    example: 'Apartment Building Residents',
+  })
   title: string;
 }
 
 export class ImageGenerationRequestDto {
+  @ApiProperty({
+    description: 'The model to use for the task',
+    example: 'dalle-3',
+  })
   model: string;
+  @ApiProperty({
+    description: 'The prompt for the image generation',
+    example: 'A cat sitting on a chair',
+  })
   prompt: string;
+  @ApiProperty({
+    description: 'The number of images to generate',
+    example: 1,
+  })
   n: number;
 }
 
