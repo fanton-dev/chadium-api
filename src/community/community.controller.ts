@@ -6,6 +6,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -58,7 +59,7 @@ export class CommunityController {
     status: HttpStatus.OK,
     description: 'Community returned successfully.',
   })
-  async getCommunityById(@Param('id') id: number) {
+  async getCommunityById(@Param('id', ParseIntPipe) id: number) {
     return await this.communityService.getCommunityById(id);
   }
 
@@ -75,7 +76,7 @@ export class CommunityController {
     description: 'Community updated successfully.',
   })
   async updateCommunity(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() dto: CommunityUpdateDto,
   ) {
     return await this.communityService.updateCommunity(id, dto);
@@ -88,7 +89,7 @@ export class CommunityController {
     status: HttpStatus.OK,
     description: 'Community deleted successfully.',
   })
-  async deleteCommunity(@Param('id') id: number) {
+  async deleteCommunity(@Param('id', ParseIntPipe) id: number) {
     return await this.communityService.deleteCommunity(id);
   }
 }
