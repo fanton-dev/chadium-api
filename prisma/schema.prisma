@@ -22,7 +22,8 @@ model User {
   name  String?
 
   // External accounts
-  googleId String? @unique @map("google_id")
+  googleId  String? @unique @map("google_id")
+  discordId String? @unique @map("discord_id")
 
   // Community memberships
   communities Community[] @relation("CommunityMembers")
