@@ -1,10 +1,8 @@
-import { CommunityModule } from "../community/community.module";
-import { Module } from "@nestjs/common";
+import { CommunityModule } from '../community/community.module';
+import { Module } from '@nestjs/common';
 
 @Module({
-  imports: [
-    CommunityModule,
-  ],
+  imports: [CommunityModule],
   controllers: [],
   providers: [],
 })

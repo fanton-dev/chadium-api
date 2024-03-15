@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { appConfig } from './app/app.config';
-import { Logger } from "@nestjs/common";
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   // API setup
@@ -10,7 +10,7 @@ async function bootstrap() {
   const { port } = appConfig;
   app.setGlobalPrefix(globalPrefix);
   app.enableCors();
-  
+
   // Start the API
   await app.listen(port);
   Logger.log(

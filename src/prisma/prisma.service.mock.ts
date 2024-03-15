@@ -1,6 +1,5 @@
 import createPrismaMock from 'prisma-mock';
 
-const prismaServiceMock = createPrismaMock({
-});
+const prismaServiceMock = createPrismaMock({});
 
 export default prismaServiceMock;

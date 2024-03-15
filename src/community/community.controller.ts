@@ -3,8 +3,7 @@ import { CommunityService } from './community.service';
 
 @Controller('communities')
 export class CommunityController {
-  constructor(private readonly communityService: CommunityService) {
-  }
+  constructor(private readonly communityService: CommunityService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
