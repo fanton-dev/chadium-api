@@ -42,7 +42,7 @@ model Community {
   id Int @id @default(autoincrement())
 
   // Community information
-  name        String
+  name        String  @unique
   description String?
   color       String
 
@@ -53,9 +53,60 @@ model Community {
   // Members
   members User[] @relation("CommunityMembers")
 
+  // Tasks
+  Task Task[]
+
   // Row timestamps
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
 
   @@map("communities")
+}
+
+model Task {
+  // Primary key
+  id Int @id @default(autoincrement())
+
+  // Task information
+  name        String
+  description String
+  state       TaskState @default(TODO)
+
+  // Community
+  communityId Int       @map("community_id")
+  community   Community @relation(fields: [communityId], references: [id])
+
+  // Crowdsourcing
+  crowdsourcing Crowdsourcing?
+
+  // Row timestamps
+  createdAt DateTime @default(now()) @db.Timestamptz()
+  updatedAt DateTime @updatedAt @db.Timestamptz()
+
+  @@map("tasks")
+}
+
+model Crowdsourcing {
+  // Primary key
+  id Int @id @default(autoincrement())
+
+  // Crowdsourcing information
+  budget   Float
+  deadline DateTime
+
+  // Relations
+  taskId Int  @unique @map("task_id")
+  task   Task @relation(fields: [taskId], references: [id])
+
+  // Row timestamps
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("crowdsourcing")
+}
+
+enum TaskState {
+  TODO
+  IN_PROGRESS
+  DONE
 }
