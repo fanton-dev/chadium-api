@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "communities" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "color" TEXT NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE "communities" (
 
 -- CreateTable
 CREATE TABLE "_CommunityMembers" (
-    "A" TEXT NOT NULL,
+    "A" INTEGER NOT NULL,
     "B" TEXT NOT NULL
 );
 
