@@ -31,6 +31,9 @@ model User {
   // Community ownership
   ownedCommunities Community[] @relation("CommunityOwner")
 
+  // Community tasks
+  tasks Task[]
+
   // Row timestamps
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
@@ -76,6 +79,9 @@ model Task {
   // Community
   communityId Int       @map("community_id")
   community   Community @relation(fields: [communityId], references: [id])
+
+  // Assignees and creator
+  assignees User[]
 
   // Crowdsourcing
   crowdsourcing Crowdsourcing?

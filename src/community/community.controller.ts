@@ -22,7 +22,7 @@ import {
 } from '@nestjs/swagger';
 
 @Controller('communities')
-@ApiTags('Communities')
+@ApiTags('Communities API')
 export class CommunityController {
   constructor(private readonly communityService: CommunityService) {}
 
