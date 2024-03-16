@@ -13,6 +13,9 @@ export class UserService {
       where: {
         id,
       },
+      include: {
+        communities: true,
+      },
     });
   }
 
@@ -32,6 +35,9 @@ export class UserService {
       where: {
         email,
       },
+      include: {
+        communities: true,
+      },
     });
   }
 
@@ -50,6 +56,9 @@ export class UserService {
     return this.prisma.user.findUnique({
       where: {
         discordId,
+      },
+      include: {
+        communities: true,
       },
     });
   }

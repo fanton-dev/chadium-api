@@ -9,17 +9,22 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { CommunityService } from './community.service';
 import { CommunityCreateDto } from './dtos/community-create.dto';
 import { CommunityUpdateDto } from './dtos/community-update.dto';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiCreatedResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { User } from '@prisma/client';
+import { Auth } from '../auth/auth.decorator';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('communities')
 @ApiTags('Communities API')
@@ -28,7 +33,9 @@ export class CommunityController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Create a new community' })
+  @ApiBearerAuth()
   @ApiBody({ type: CommunityCreateDto })
   @ApiCreatedResponse({
     description: 'Community created.',
@@ -37,8 +44,8 @@ export class CommunityController {
     status: HttpStatus.CREATED,
     description: 'Community created.',
   })
-  async createCommunity(@Body() dto: CommunityCreateDto) {
-    return await this.communityService.createCommunity(dto);
+  async createCommunity(@Body() dto: CommunityCreateDto, @Auth() user: User) {
+    return await this.communityService.createCommunity(dto, user);
   }
 
   @Get()

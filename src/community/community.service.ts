@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Community } from '@prisma/client';
+import { Community, User } from '@prisma/client';
 import { CommunityCreateDto } from './dtos/community-create.dto';
 import { CommunityUpdateDto } from './dtos/community-update.dto';
 
@@ -9,13 +9,22 @@ export class CommunityService {
   constructor(private readonly prismaService: PrismaService) {}
 
   // Create a new community
-  async createCommunity(dto: CommunityCreateDto): Promise<Community> {
+  async createCommunity(
+    dto: CommunityCreateDto,
+    user: User,
+  ): Promise<Community> {
     return this.prismaService.community.create({
       data: {
         name: dto.name,
         description: dto.description,
         color: dto.color,
-        ownerId: '0',
+        image: dto.image,
+        ownerId: user.id,
+        members: {
+          connect: {
+            id: user.id,
+          },
+        },
       },
     });
   }

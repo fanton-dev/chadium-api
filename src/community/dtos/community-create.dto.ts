@@ -25,4 +25,12 @@ export class CommunityCreateDto {
   @IsNotEmpty()
   @IsString()
   color: string;
+
+  @ApiProperty({
+    description: 'The image URL of the community',
+    example: 'https://example.com/image.jpg',
+  })
+  @IsOptional()
+  @IsString()
+  image?: string;
 }
