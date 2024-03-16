@@ -49,6 +49,7 @@ model Community {
   name        String  @unique
   description String?
   color       String
+  image       String?
 
   // Owner
   ownerId String @map("owner_id")
